@@ -1,0 +1,15 @@
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\bin\Release\Masimo_Root.exe.config
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\bin\Release\Masimo_Root.exe.manifest
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\bin\Release\Masimo_Root.application
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\bin\Release\Masimo_Root.exe
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\bin\Release\Masimo_Root.pdb
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\bin\Release\System.IO.Ports.dll
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\bin\Release\System.IO.Ports.xml
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.csproj.AssemblyReference.cache
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.csproj.CoreCompileInputs.cache
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_R.BD21F873.Up2Date
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.exe
+C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.pdb
+C:\dev\CPReboa\runtime\tools\Masimo_Root\Masimo_Root.exe.config
+C:\dev\CPReboa\runtime\tools\Masimo_Root\Masimo_Root.exe
+C:\dev\CPReboa\runtime\tools\Masimo_Root\Masimo_Root.pdb

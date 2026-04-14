@@ -1,0 +1,15 @@
+# Build outputs
+bin/
+obj/
+
+# Runtime (your deployment folder)
+runtime/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# OS junk
+.DS_Store
+Thumbs.db

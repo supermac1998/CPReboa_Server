@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{510B78E3-D5A9-4393-A630-2417727B010D}|VSCaptureMP\\VSCaptureMP.csproj|c:\\dev\\cpreboa\\source\\vscapturemp\\vscapturemp\\vscapturemp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{510B78E3-D5A9-4393-A630-2417727B010D}|VSCaptureMP\\VSCaptureMP.csproj|solutionrelative:vscapturemp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{510B78E3-D5A9-4393-A630-2417727B010D}|VSCaptureMP\\VSCaptureMP.csproj|C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\vscapturemp\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{510B78E3-D5A9-4393-A630-2417727B010D}|VSCaptureMP\\VSCaptureMP.csproj|solutionrelative:vscapturemp\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{510B78E3-D5A9-4393-A630-2417727B010D}|VSCaptureMP\\VSCaptureMP.csproj|C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\vscapturemp\\class2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{510B78E3-D5A9-4393-A630-2417727B010D}|VSCaptureMP\\VSCaptureMP.csproj|solutionrelative:vscapturemp\\class2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{510B78E3-D5A9-4393-A630-2417727B010D}|VSCaptureMP\\VSCaptureMP.csproj|C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\vscapturemp\\class3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{510B78E3-D5A9-4393-A630-2417727B010D}|VSCaptureMP\\VSCaptureMP.csproj|solutionrelative:vscapturemp\\class3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\VSCaptureMP\\Class1.cs",
+              "RelativeDocumentMoniker": "VSCaptureMP\\Class1.cs",
+              "ToolTip": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\VSCaptureMP\\Class1.cs",
+              "RelativeToolTip": "VSCaptureMP\\Class1.cs",
+              "ViewState": "AgIAAMcGAAAAAAAAAAAowN0GAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T13:55:13.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Class2.cs",
+              "DocumentMoniker": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\VSCaptureMP\\Class2.cs",
+              "RelativeDocumentMoniker": "VSCaptureMP\\Class2.cs",
+              "ToolTip": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\VSCaptureMP\\Class2.cs",
+              "RelativeToolTip": "VSCaptureMP\\Class2.cs",
+              "ViewState": "AgIAAKsBAAAAAAAAAAAswMIBAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T13:54:49.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Class3.cs",
+              "DocumentMoniker": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\VSCaptureMP\\Class3.cs",
+              "RelativeDocumentMoniker": "VSCaptureMP\\Class3.cs",
+              "ToolTip": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\VSCaptureMP\\Class3.cs",
+              "RelativeToolTip": "VSCaptureMP\\Class3.cs",
+              "ViewState": "AgIAAE4DAAAAAAAAAAAQwGoDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T13:52:27.516Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\VSCaptureMP\\Program.cs",
+              "RelativeDocumentMoniker": "VSCaptureMP\\Program.cs",
+              "ToolTip": "C:\\dev\\CPReboa\\source\\VSCaptureMP\\VSCaptureMP\\VSCaptureMP\\Program.cs",
+              "RelativeToolTip": "VSCaptureMP\\Program.cs",
+              "ViewState": "AgIAAFUCAAAAAAAAAAAMwFwCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T11:12:27.949Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

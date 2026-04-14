@@ -1,0 +1,11 @@
+C:\dev\CPReboa\runtime\tools\MicroRecording\MicroRecording.exe
+C:\dev\CPReboa\runtime\tools\MicroRecording\MicroRecording.dll
+C:\dev\CPReboa\runtime\tools\MicroRecording\MicroRecording.deps.json
+C:\dev\CPReboa\runtime\tools\MicroRecording\MicroRecording.runtimeconfig.json
+C:\dev\CPReboa\runtime\tools\MicroRecording\MicroRecording.pdb
+C:\dev\CPReboa\runtime\tools\MicroRecording\NAudio.dll
+C:\dev\CPReboa\runtime\tools\MicroRecording\NAudio.Asio.dll
+C:\dev\CPReboa\runtime\tools\MicroRecording\NAudio.Core.dll
+C:\dev\CPReboa\runtime\tools\MicroRecording\NAudio.Midi.dll
+C:\dev\CPReboa\runtime\tools\MicroRecording\NAudio.Wasapi.dll
+C:\dev\CPReboa\runtime\tools\MicroRecording\NAudio.WinMM.dll

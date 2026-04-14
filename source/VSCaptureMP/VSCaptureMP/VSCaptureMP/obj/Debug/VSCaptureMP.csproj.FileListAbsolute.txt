@@ -1,0 +1,23 @@
+C:/Users/John/Documents/Philips connect/VSCaptureMP/VSCaptureMP/VSCaptureMP/bin/Debug/VSCaptureMP.exe.config
+C:/Users/John/Documents/Philips connect/VSCaptureMPWave/VSCaptureMP/VSCaptureMP/bin/Debug/VSCaptureMP.exe.config
+C:\Users\resea\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.exe.config
+C:\Users\resea\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.exe
+C:\Users\resea\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.pdb
+C:\Users\resea\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.csproj.AssemblyReference.cache
+C:\Users\resea\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.csproj.CoreCompileInputs.cache
+C:\Users\resea\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.exe
+C:\Users\resea\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.pdb
+C:\Users\Alex\Documents\CPReboa-main\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.exe.config
+C:\Users\Alex\Documents\CPReboa-main\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.exe
+C:\Users\Alex\Documents\CPReboa-main\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.pdb
+C:\Users\Alex\Documents\CPReboa-main\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.csproj.AssemblyReference.cache
+C:\Users\Alex\Documents\CPReboa-main\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Documents\CPReboa-main\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.exe
+C:\Users\Alex\Documents\CPReboa-main\source\VSCaptureMP-master\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.pdb
+C:\dev\CPReboa\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.exe.config
+C:\dev\CPReboa\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.exe
+C:\dev\CPReboa\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\bin\Debug\VSCaptureMP.pdb
+C:\dev\CPReboa\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.csproj.AssemblyReference.cache
+C:\dev\CPReboa\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.csproj.CoreCompileInputs.cache
+C:\dev\CPReboa\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.exe
+C:\dev\CPReboa\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Debug\VSCaptureMP.pdb
