@@ -13,3 +13,11 @@ C:\dev\CPReboa\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.pdb
 C:\dev\CPReboa\runtime\tools\Masimo_Root\Masimo_Root.exe.config
 C:\dev\CPReboa\runtime\tools\Masimo_Root\Masimo_Root.exe
 C:\dev\CPReboa\runtime\tools\Masimo_Root\Masimo_Root.pdb
+C:\dev\CPReboa_Server\runtime\tools\Masimo_Root\Masimo_Root.exe.config
+C:\dev\CPReboa_Server\runtime\tools\Masimo_Root\Masimo_Root.exe
+C:\dev\CPReboa_Server\runtime\tools\Masimo_Root\Masimo_Root.pdb
+C:\dev\CPReboa_Server\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.csproj.AssemblyReference.cache
+C:\dev\CPReboa_Server\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.csproj.CoreCompileInputs.cache
+C:\dev\CPReboa_Server\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_R.BD21F873.Up2Date
+C:\dev\CPReboa_Server\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.exe
+C:\dev\CPReboa_Server\source\Masimo_Root\Masimo_Root\obj\Release\Masimo_Root.pdb

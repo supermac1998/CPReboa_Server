@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__14",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__23",
     "RelativePath": "arrival",
     "HttpMethod": "POST",
     "IsController": false,
@@ -17,7 +17,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__17",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__26",
     "RelativePath": "cases",
     "HttpMethod": "GET",
     "IsController": false,
@@ -33,7 +33,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__18",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__27",
     "RelativePath": "cases/{id}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -55,7 +55,29 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__24",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__28",
+    "RelativePath": "cases/{id}/form",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__34",
     "RelativePath": "cases/finalize",
     "HttpMethod": "POST",
     "IsController": false,
@@ -71,7 +93,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__19",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__29",
     "RelativePath": "cases/new",
     "HttpMethod": "POST",
     "IsController": false,
@@ -87,7 +109,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__20",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__30",
     "RelativePath": "cases/select/{id}",
     "HttpMethod": "POST",
     "IsController": false,
@@ -109,7 +131,39 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__15",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__46",
+    "RelativePath": "cases/upload-signature",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__47",
+    "RelativePath": "cases/upload-study-nurse-signature",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__24",
     "RelativePath": "event",
     "HttpMethod": "POST",
     "IsController": false,
@@ -131,7 +185,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__23",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__33",
     "RelativePath": "form/value",
     "HttpMethod": "POST",
     "IsController": false,
@@ -153,7 +207,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__9",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__18",
     "RelativePath": "start",
     "HttpMethod": "GET",
     "IsController": false,
@@ -169,7 +223,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__11",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__20",
     "RelativePath": "status",
     "HttpMethod": "GET",
     "IsController": false,
@@ -185,7 +239,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__10",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__19",
     "RelativePath": "stop",
     "HttpMethod": "GET",
     "IsController": false,
@@ -201,7 +255,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__16",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__25",
     "RelativePath": "value",
     "HttpMethod": "POST",
     "IsController": false,

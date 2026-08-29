@@ -209,11 +209,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\CPReboa\\source\\MicroRecording\\MicroRecording\\MicroRecording.csproj",
+      "projectUniqueName": "C:\\dev\\CPReboa_Server\\source\\MicroRecording\\MicroRecording\\MicroRecording.csproj",
       "projectName": "MicroRecording",
-      "projectPath": "C:\\dev\\CPReboa\\source\\MicroRecording\\MicroRecording\\MicroRecording.csproj",
+      "projectPath": "C:\\dev\\CPReboa_Server\\source\\MicroRecording\\MicroRecording\\MicroRecording.csproj",
       "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\CPReboa\\source\\MicroRecording\\MicroRecording\\obj\\",
+      "outputPath": "C:\\dev\\CPReboa_Server\\source\\MicroRecording\\MicroRecording\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

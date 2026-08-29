@@ -1,0 +1,7 @@
+C:\dev\CPReboa_Server\source\CPReboaMonitorLauncher\CPReboaMonitorLauncher\obj\Release\net10.0\PubTmp\Out\CPReboaMonitorLauncher.exe
+C:\dev\CPReboa_Server\source\CPReboaMonitorLauncher\CPReboaMonitorLauncher\obj\Release\net10.0\PubTmp\Out\appsettings.Development.json
+C:\dev\CPReboa_Server\source\CPReboaMonitorLauncher\CPReboaMonitorLauncher\obj\Release\net10.0\PubTmp\Out\appsettings.json
+C:\dev\CPReboa_Server\source\CPReboaMonitorLauncher\CPReboaMonitorLauncher\obj\Release\net10.0\PubTmp\Out\CPReboaMonitorLauncher.dll
+C:\dev\CPReboa_Server\source\CPReboaMonitorLauncher\CPReboaMonitorLauncher\obj\Release\net10.0\PubTmp\Out\CPReboaMonitorLauncher.deps.json
+C:\dev\CPReboa_Server\source\CPReboaMonitorLauncher\CPReboaMonitorLauncher\obj\Release\net10.0\PubTmp\Out\CPReboaMonitorLauncher.runtimeconfig.json
+C:\dev\CPReboa_Server\source\CPReboaMonitorLauncher\CPReboaMonitorLauncher\obj\Release\net10.0\PubTmp\Out\CPReboaMonitorLauncher.pdb

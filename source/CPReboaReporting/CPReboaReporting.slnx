@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CPReboaReporting/CPReboaReporting.csproj" />
+  <Project Path="Test/Main.csproj" />
+</Solution>

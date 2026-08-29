@@ -31,6 +31,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command ^
 "$s=(New-Object -COM WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop') + '\CPReboa Launcher.lnk'); ^
 $s.TargetPath='%CD%\runtime\CPReboaMonitorLauncher\CPReboaMonitorLauncher.exe'; ^
 $s.WorkingDirectory='%CD%\runtime\CPReboaMonitorLauncher'; ^
+$s.IconLocation='C:\dev\CPReboa_Server\source\CPReboaMonitorLauncher\CPReboaMonitorLauncher\CPReboaLogo.ico,0'; ^
 $s.Save()"
 
 echo Shortcut created on desktop.

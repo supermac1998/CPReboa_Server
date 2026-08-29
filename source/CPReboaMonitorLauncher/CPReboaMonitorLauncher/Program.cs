@@ -11,6 +11,8 @@ using System.Threading;
 
 
 
+
+
 // --- Processes ---
 Process? intelliProc = null;
 Process? masimoProc = null;
@@ -26,6 +28,8 @@ DateTime? microphoneStartTime = null;
 
 string? intelliStopFile = null;
 string? microphoneStopFile = null;
+
+
 
 // --- ASP.NET builder ---
 var builder = WebApplication.CreateBuilder(args);
@@ -74,8 +78,11 @@ string sessionsDir = Path.Combine(appDataDir, "cases");
 
 string templateCsvPath = Path.Combine(appDataDir, "CPReboa_ImportTemplate.csv");
 
+
+
 // Ensure folder exists once at startup
 Directory.CreateDirectory(sessionsDir);
+
 
 void SetCurrentCase(string caseId)
 {
@@ -85,10 +92,38 @@ void SetCurrentCase(string caseId)
     currentFormCsvFile = Path.Combine(currentCaseDir, "form.csv");
 }
 
-string CreateNewCase()
+
+
+string SanitizeRecordIdForFolder(string? input)
+{
+    if (string.IsNullOrWhiteSpace(input))
+        return "UNKNOWN";
+
+    var safe = new string(
+        input.Trim()
+             .Select(ch => char.IsLetterOrDigit(ch) || ch == '_' || ch == '-' ? ch : '_')
+             .ToArray()
+    );
+
+    return string.IsNullOrWhiteSpace(safe) ? "UNKNOWN" : safe;
+}
+
+string CreateNewCase(string? recordId)
 {
     var utcNow = DateTime.UtcNow;
-    var caseId = $"case_{utcNow:yyyyMMdd_HHmmss}";
+
+    var safeRecordId = SanitizeRecordIdForFolder(recordId);
+    var dateTimePart = utcNow.ToLocalTime().ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture);
+
+    var baseCaseId = $"CPREBOA_CASE_{safeRecordId}_{dateTimePart}_V1";
+    var caseId = baseCaseId;
+
+    var counter = 1;
+    while (Directory.Exists(Path.Combine(sessionsDir, caseId)))
+    {
+        caseId = $"{baseCaseId}_{counter}";
+        counter++;
+    }
 
     var caseDir = Path.Combine(sessionsDir, caseId);
     Directory.CreateDirectory(caseDir);
@@ -109,6 +144,19 @@ bool HasActiveCase() =>
     !string.IsNullOrWhiteSpace(currentCaseDir) &&
     !string.IsNullOrWhiteSpace(currentEventsCsvFile) &&
     !string.IsNullOrWhiteSpace(currentFormCsvFile);
+
+
+string FormatUtcForStorage(DateTime utc, string eventName)
+{
+    return utc.ToString("O", CultureInfo.InvariantCulture);
+}
+
+string FormatLocalForClient(DateTime utc, string eventName)
+{
+    var local = utc.ToLocalTime();
+
+    return local.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture); // normal
+}
 
 MonitorStatusFile? ReadIntelliVueStatusFile()
 {
@@ -691,8 +739,8 @@ app.MapPost("/event", async (EventRequest request) =>
         return Results.BadRequest("Arrival must be triggered first.");
 
     var utcNow = DateTime.UtcNow;
-    var utcString = utcNow.ToString("O");
 
+    var utcString = FormatUtcForStorage(utcNow, request.EventName);
     await LogToCsvAsync(request.EventName, utcString);
 
     if (request.EventName == "time_end_case")
@@ -701,8 +749,10 @@ app.MapPost("/event", async (EventRequest request) =>
     }
 
     // Return local time to Android for display
-    var localString = utcNow.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
-    return Results.Json(new { timestamp = localString });
+    return Results.Json(new
+    {
+        timestamp = FormatLocalForClient(utcNow, request.EventName)
+    });
 });
 
 app.MapPost("/value", async (EventRequest request) =>
@@ -716,10 +766,47 @@ app.MapPost("/value", async (EventRequest request) =>
 
 });
 
-// List available session CSVs
+
+(bool ok, string recordId, string dateTimeDisplay, DateTime sortUtc)
+TryParseCaseFolderName(string folderName)
+{
+    const string prefix = "CPREBOA_CASE_";
+    const string suffix = "_V1";
+
+    if (!folderName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) ||
+        !folderName.EndsWith(suffix, StringComparison.OrdinalIgnoreCase))
+    {
+        return (false, "", "", DateTime.MinValue);
+    }
+
+    var core = folderName.Substring(prefix.Length, folderName.Length - prefix.Length - suffix.Length);
+    var parts = core.Split('_');
+
+    if (parts.Length < 3)
+        return (false, "", "", DateTime.MinValue);
+
+    var datePart = parts[^2];
+    var timePart = parts[^1];
+    var recordId = string.Join("_", parts.Take(parts.Length - 2));
+
+    if (!DateTime.TryParseExact(
+            $"{datePart}_{timePart}",
+            "yyyyMMdd_HHmmss",
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal,
+            out var parsedUtc))
+    {
+        return (false, recordId, "", DateTime.MinValue);
+    }
+
+    var dateTimeDisplay = parsedUtc.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+
+    return (true, recordId, dateTimeDisplay, parsedUtc);
+}
+
+// List available session folders
 app.MapGet("/cases", () =>
 {
-
     Directory.CreateDirectory(sessionsDir);
 
     var cases = Directory.EnumerateDirectories(sessionsDir)
@@ -727,17 +814,51 @@ app.MapGet("/cases", () =>
         {
             var di = new DirectoryInfo(dir);
             var eventsPath = Path.Combine(dir, "events.csv");
+            var formPath = Path.Combine(dir, "form.csv");
             var eventsFile = new FileInfo(eventsPath);
+
+            var parsed = TryParseCaseFolderName(di.Name);
+
+            string recordId = parsed.recordId;
+            string dateTime = parsed.dateTimeDisplay;
+            DateTime sortUtc = parsed.ok ? parsed.sortUtc : di.CreationTimeUtc;
+
+            if (File.Exists(formPath))
+            {
+                try
+                {
+                    var formValues = ReadNameValueCsv(formPath, "Field", "Value");
+                    if (formValues.TryGetValue("record_id", out var formRecordId) &&
+                        !string.IsNullOrWhiteSpace(formRecordId))
+                    {
+                        recordId = formRecordId;
+                    }
+                }
+                catch
+                {
+                    // ignore form parse errors, keep folder-name fallback
+                }
+            }
 
             return new
             {
                 id = di.Name,
                 name = di.Name,
-                createdUtc = di.CreationTimeUtc,
-                sizeBytes = eventsFile.Exists ? eventsFile.Length : 0L
+                recordId = parsed.recordId,
+                dateTime = parsed.dateTimeDisplay,
+                sizeBytes = eventsFile.Exists ? eventsFile.Length : 0L,
+                sortUtc = parsed.sortUtc
             };
         })
-        .OrderByDescending(c => c.createdUtc);
+        .OrderByDescending(c => c.sortUtc)
+        .Select(c => new
+        {
+            id = c.id,
+            name = c.name,
+            recordId = c.recordId,
+            dateTime = c.dateTime,
+            sizeBytes = c.sizeBytes
+        });
 
     return Results.Json(cases);
 });
@@ -762,11 +883,36 @@ app.MapGet("/cases/{id}", (string id) =>
     );
 });
 
-app.MapPost("/cases/new", () =>
+app.MapGet("/cases/{id}/form", (string id) =>
 {
     Directory.CreateDirectory(sessionsDir);
 
-    var caseId = CreateNewCase();
+    id = Path.GetFileName(id); // prevent path traversal
+
+    var caseDir = Path.Combine(sessionsDir, id);
+    var formPath = Path.Combine(caseDir, "form.csv");
+
+    if (!Directory.Exists(caseDir) || !System.IO.File.Exists(formPath))
+        return Results.NotFound("Form not found.");
+
+    return Results.File(
+        formPath,
+        "text/csv; charset=utf-8",
+        fileDownloadName: $"{id}_form.csv"
+    );
+});
+
+app.MapPost("/cases/new", async (CreateCaseRequest request) =>
+{
+    Directory.CreateDirectory(sessionsDir);
+
+    var cleanRecordId = request.RecordId?.Trim();
+    var caseId = CreateNewCase(cleanRecordId);
+
+    if (!string.IsNullOrWhiteSpace(cleanRecordId))
+    {
+        await SaveFormValueAsync("record_id", cleanRecordId);
+    }
 
     return Results.Json(new
     {
@@ -952,6 +1098,47 @@ List<string> SplitCsvLine(string line)
     return result;
 }
 
+string SanitizeFileNamePart(string? input)
+{
+    if (string.IsNullOrWhiteSpace(input))
+        return "UNKNOWN";
+
+    var invalidChars = Path.GetInvalidFileNameChars();
+
+    var safe = new string(
+        input.Trim()
+             .Select(ch => invalidChars.Contains(ch) ? '_' : ch)
+             .Select(ch => char.IsWhiteSpace(ch) ? '_' : ch)
+             .ToArray()
+    );
+
+    while (safe.Contains("__"))
+        safe = safe.Replace("__", "_");
+
+    safe = safe.Trim('_');
+
+    return string.IsNullOrWhiteSpace(safe) ? "UNKNOWN" : safe;
+}
+
+string GetFormValueOrDefault(string fieldName, string fallback)
+{
+    if (string.IsNullOrWhiteSpace(currentFormCsvFile) || !File.Exists(currentFormCsvFile))
+        return fallback;
+
+    try
+    {
+        var values = ReadNameValueCsv(currentFormCsvFile, "Field", "Value");
+        if (values.TryGetValue(fieldName, out var value) && !string.IsNullOrWhiteSpace(value))
+            return value.Trim();
+    }
+    catch
+    {
+        // ignore parse errors and use fallback
+    }
+
+    return fallback;
+}
+
 Dictionary<string, string> BuildCaseLookup(string caseDir)
 {
     var lookup = new Dictionary<string, string>(StringComparer.Ordinal);
@@ -965,11 +1152,32 @@ Dictionary<string, string> BuildCaseLookup(string caseDir)
     foreach (var kvp in ReadNameValueCsv(formFile, "Field", "Value"))
         lookup[kvp.Key] = kvp.Value;
 
+    // Map event names from events.csv to template variable names
+    var eventToTemplateMap = new Dictionary<string, string>(StringComparer.Ordinal)
+    {
+        ["dt_be_1"] = "dt_bs_t0",
+        ["dt_be_2"] = "dt_bs_t4",
+        ["dt_be_3"] = "dt_bs_t5"
+    };
+
+    foreach (var map in eventToTemplateMap)
+    {
+        if (lookup.TryGetValue(map.Key, out var value))
+        {
+            lookup[map.Value] = value;
+        }
+    }
+
     AddIntelliVueTemplateValues(lookup, caseDir);
     AddMasimoTemplateValues(lookup, caseDir);
 
     return lookup;
 }
+
+bool IsBloodTemplateField(string variableName) =>
+    string.Equals(variableName, "dt_bs_t0", StringComparison.OrdinalIgnoreCase) ||
+    string.Equals(variableName, "dt_bs_t4", StringComparison.OrdinalIgnoreCase) ||
+    string.Equals(variableName, "dt_bs_t5", StringComparison.OrdinalIgnoreCase);
 
 async Task<string> FillTemplateCsvAsync(string templateCsvPath, string caseDir)
 {
@@ -1007,7 +1215,16 @@ async Task<string> FillTemplateCsvAsync(string templateCsvPath, string caseDir)
 
         if (!string.IsNullOrWhiteSpace(variableName) && lookup.TryGetValue(variableName, out var matchedValue))
         {
-            parts[1] = matchedValue;
+            if (TryParseUtcTimestamp(matchedValue, out var utc))
+            {
+                parts[1] = IsBloodTemplateField(variableName)
+                    ? utc.ToLocalTime().ToString("d/M/yyyy HH:mm", CultureInfo.InvariantCulture)
+                    : utc.ToLocalTime().ToString("d/M/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                parts[1] = matchedValue;
+            }
         }
 
         outputLines.Add(string.Join(",", parts.Select(EscapeCsv)));
@@ -1387,6 +1604,78 @@ void AddMasimoTemplateValues(Dictionary<string, string> lookup, string caseDir)
     }
 }
 
+app.MapPost("/cases/upload-signature", async (HttpRequest request) =>
+{
+    if (!HasActiveCase() || string.IsNullOrWhiteSpace(currentCaseDir))
+        return Results.BadRequest("No active case selected.");
+
+    if (!request.HasFormContentType)
+        return Results.BadRequest("Expected multipart/form-data.");
+
+    var form = await request.ReadFormAsync();
+    var file = form.Files["file"];
+
+    if (file == null || file.Length == 0)
+        return Results.BadRequest("No file uploaded.");
+
+    var extension = Path.GetExtension(file.FileName);
+    if (!string.Equals(extension, ".png", StringComparison.OrdinalIgnoreCase))
+        return Results.BadRequest("Only PNG files are allowed.");
+
+    var physicianName = GetFormValueOrDefault("name_of_study_physician", "UNKNOWN_PHYSICIAN");
+    var safePhysicianName = SanitizeFileNamePart(physicianName);
+    var outputFileName = $"signature_physician_{safePhysicianName}.png";
+    var targetPath = Path.Combine(currentCaseDir, outputFileName);
+
+    await using (var stream = File.Create(targetPath))
+    {
+        await file.CopyToAsync(stream);
+    }
+
+    await SaveFormValueAsync("signature_physician_file", outputFileName);
+
+    return Results.Ok(new
+    {
+        message = "Signature uploaded.",
+        fileName = outputFileName
+    });
+});
+
+app.MapPost("/cases/upload-study-nurse-signature", async (HttpRequest request) =>
+{
+    if (!HasActiveCase() || string.IsNullOrWhiteSpace(currentCaseDir))
+        return Results.BadRequest("No active case selected.");
+
+    if (!request.HasFormContentType)
+        return Results.BadRequest("Expected multipart/form-data.");
+
+    var form = await request.ReadFormAsync();
+    var file = form.Files["file"];
+
+    if (file == null || file.Length == 0)
+        return Results.BadRequest("No file uploaded.");
+
+    var extension = Path.GetExtension(file.FileName);
+    if (!string.Equals(extension, ".png", StringComparison.OrdinalIgnoreCase))
+        return Results.BadRequest("Only PNG files are allowed.");
+
+    var nurseName = GetFormValueOrDefault("name_of_study_nurse", "UNKNOWN_NURSE");
+    var safeNurseName = SanitizeFileNamePart(nurseName);
+    var outputFileName = $"signature_study_nurse_{safeNurseName}.png";
+    var targetPath = Path.Combine(currentCaseDir, outputFileName);
+
+    await using var stream = File.Create(targetPath);
+    await file.CopyToAsync(stream);
+
+    await SaveFormValueAsync("signature_study_nurse_file", outputFileName);
+
+    return Results.Ok(new
+    {
+        message = "Study nurse signature uploaded.",
+        fileName = outputFileName
+    });
+});
+
 
 
 app.MapGet("/", async context =>
@@ -1571,7 +1860,6 @@ document.getElementById(""confirmNo"").onclick = () => {
 };
 
 
-// Start/Stop buttons
 document.getElementById('startBtn').onclick = () => {
 
     showConfirm(""Are you sure you want to START the monitors?"", async () => {
@@ -1615,3 +1903,6 @@ sealed class MonitorStatusFile
     public string? LastPacketReceivedUtc { get; set; }
     public string? LastDataReceivedUtc { get; set; }
 }
+
+public record CreateCaseRequest(string? RecordId);
+

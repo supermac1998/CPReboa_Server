@@ -10,3 +10,10 @@ C:\dev\CPReboa\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Release\VSCaptureM
 C:\dev\CPReboa\runtime\tools\VSCaptureMP\VSCaptureMP.exe.config
 C:\dev\CPReboa\runtime\tools\VSCaptureMP\VSCaptureMP.exe
 C:\dev\CPReboa\runtime\tools\VSCaptureMP\VSCaptureMP.pdb
+C:\dev\CPReboa_Server\runtime\tools\VSCaptureMP\VSCaptureMP.exe.config
+C:\dev\CPReboa_Server\runtime\tools\VSCaptureMP\VSCaptureMP.exe
+C:\dev\CPReboa_Server\runtime\tools\VSCaptureMP\VSCaptureMP.pdb
+C:\dev\CPReboa_Server\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Release\VSCaptureMP.csproj.AssemblyReference.cache
+C:\dev\CPReboa_Server\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Release\VSCaptureMP.csproj.CoreCompileInputs.cache
+C:\dev\CPReboa_Server\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Release\VSCaptureMP.exe
+C:\dev\CPReboa_Server\source\VSCaptureMP\VSCaptureMP\VSCaptureMP\obj\Release\VSCaptureMP.pdb
