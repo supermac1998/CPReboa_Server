@@ -30,3 +30,4 @@ C:\dev\CPReboa_Server\source\CPReboaReporting\CPReboaReporting\obj\Release\net10
 C:\dev\CPReboa_Server\source\CPReboaReporting\CPReboaReporting\obj\Release\net10.0\refint\CPReboaReporting.dll
 C:\dev\CPReboa_Server\source\CPReboaReporting\CPReboaReporting\obj\Release\net10.0\CPReboaReporting.pdb
 C:\dev\CPReboa_Server\source\CPReboaReporting\CPReboaReporting\obj\Release\net10.0\ref\CPReboaReporting.dll
+C:\dev\CPReboa_Server\source\CPReboaReporting\CPReboaReporting\obj\Release\net10.0\CPReboaR.2644F251.Up2Date

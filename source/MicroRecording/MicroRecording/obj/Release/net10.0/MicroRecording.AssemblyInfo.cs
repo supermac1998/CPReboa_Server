@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MicroRecording")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7deebb125275f307a2439e32307e2c7dd6c19933")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4502b35e0ed9a81a06c5211289c2212d4297195a")]
 [assembly: System.Reflection.AssemblyProductAttribute("MicroRecording")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MicroRecording")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

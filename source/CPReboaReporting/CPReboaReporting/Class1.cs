@@ -44,6 +44,46 @@ namespace CPReboaReporting
         }
     }
 
+    public static class DateTimeHelper
+    {
+        public static string? FormatRedcapDateTime(string? value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return null;
+
+            value = value.Trim();
+
+            // Normal timestamps - include seconds
+            if (DateTime.TryParseExact(
+                    value,
+                    "d/M/yyyy HH:mm:ss",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.None,
+                    out var dateTimeWithSeconds))
+            {
+                return dateTimeWithSeconds.ToString(
+                    "dd-MM-yyyy HH:mm:ss",
+                    CultureInfo.InvariantCulture);
+            }
+
+            // Blood sample timestamps - no seconds
+            if (DateTime.TryParseExact(
+                    value,
+                    "d/M/yyyy HH:mm",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.None,
+                    out var dateTimeWithoutSeconds))
+            {
+                return dateTimeWithoutSeconds.ToString(
+                    "dd-MM-yyyy HH:mm",
+                    CultureInfo.InvariantCulture);
+            }
+
+            return value;
+        }
+    }
+
+
     public sealed class ChoiceOption
     {
         public string Value { get; set; } = "";
@@ -102,19 +142,9 @@ namespace CPReboaReporting
             return null;
         }
 
-        private static string FormatTimestamp(string value)
+        private static string? FormatTimestamp(string value)
         {
-            if (DateTime.TryParseExact(
-                    value,
-                    "d/M/yyyy HH:mm:ss",   
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.None,
-                    out var dt))
-            {
-                return dt.ToString("dd-MM-yyyy HH:mm:ss");
-            }
-
-            return value;
+            return DateTimeHelper.FormatRedcapDateTime(value);
         }
     }
 
@@ -140,19 +170,9 @@ namespace CPReboaReporting
             return null;
         }
 
-        private static string FormatTimestamp(string value)
+        private static string? FormatTimestamp(string value)
         {
-            if (DateTime.TryParseExact(
-                    value,
-                    "d/M/yyyy HH:mm:ss", 
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.None,
-                    out var dt))
-            {
-                return dt.ToString("dd-MM-yyyy HH:mm:ss");
-            }
-
-            return value;
+            return DateTimeHelper.FormatRedcapDateTime(value);
         }
     }
 
@@ -178,18 +198,9 @@ namespace CPReboaReporting
             return null;
         }
 
-        private static string FormatTimestamp(string value)
+        private static string? FormatTimestamp(string value)
         {
-            if (DateTime.TryParse(
-                value,
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal,
-                out var dt))
-            {
-                return dt.ToLocalTime().ToString("dd-MM-yyyy HH:mm:ss");
-            }
-
-            return value;
+            return DateTimeHelper.FormatRedcapDateTime(value);
         }
     }
 
@@ -197,23 +208,7 @@ namespace CPReboaReporting
     {
         private static string? FormatTimestamp(string? value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                return null;
-
-            if (DateTime.TryParseExact(
-                    value,
-                    "d/M/yyyy HH:mm:ss",
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.None,
-                    out var dt))
-            {
-                return dt.ToString("dd-MM-yyyy HH:mm:ss");
-            }
-
-            if (DateTime.TryParse(value, out dt))
-                return dt.ToString("dd-MM-yyyy HH:mm:ss");
-
-            return value;
+            return DateTimeHelper.FormatRedcapDateTime(value);
         }
 
         public static async Task<string> GenerateMonitorTableCsvAsync(string caseDir, Dictionary<string, string> lookup)
@@ -274,13 +269,13 @@ namespace CPReboaReporting
                     Timepoint = label,
                     Timestamp = TimepointMapping.GetTimestamp(lookup, suffix),
 
-                    SchleuseBpSyst = GetValue(lookup, $"r_bp_syst_{suffix}"),
-                    SchleuseBpMean = GetValue(lookup, $"r_bp_m_{suffix}"),
-                    SchleuseBpDiast = GetValue(lookup, $"r_bp_diast_{suffix}"),
+                    SchleuseBpSyst = GetValue(lookup, $"s_bp_syst_{suffix}"),
+                    SchleuseBpMean = GetValue(lookup, $"s_bp_m_{suffix}"),
+                    SchleuseBpDiast = GetValue(lookup, $"s_bp_diast_{suffix}"),
 
-                    ReboaBpSyst = GetValue(lookup, $"s_bp_syst_{suffix}"),
-                    ReboaBpMean = GetValue(lookup, $"s_bp_m_{suffix}"),
-                    ReboaBpDiast = GetValue(lookup, $"s_bp_diast_{suffix}"),
+                    ReboaBpSyst = GetValue(lookup, $"r_bp_syst_{suffix}"),
+                    ReboaBpMean = GetValue(lookup, $"r_bp_m_{suffix}"),
+                    ReboaBpDiast = GetValue(lookup, $"r_bp_diast_{suffix}"),
 
                     NirsLeft = GetValue(lookup, $"nirs_l_{suffix}"),
                     NirsRight = GetValue(lookup, $"nirs_r_{suffix}"),
@@ -302,13 +297,13 @@ namespace CPReboaReporting
                     Timepoint = label,
                     Timestamp = RepeatTimepointMapping.GetTimestamp(lookup, suffix),
 
-                    SchleuseBpSyst = GetValue(lookup, $"r_bp_syst_{suffix}"),
-                    SchleuseBpMean = GetValue(lookup, $"r_bp_m_{suffix}"),
-                    SchleuseBpDiast = GetValue(lookup, $"r_bp_diast_{suffix}"),
+                    SchleuseBpSyst = GetValue(lookup, $"s_bp_syst_{suffix}"),
+                    SchleuseBpMean = GetValue(lookup, $"s_bp_m_{suffix}"),
+                    SchleuseBpDiast = GetValue(lookup, $"s_bp_diast_{suffix}"),
 
-                    ReboaBpSyst = GetValue(lookup, $"s_bp_syst_{suffix}"),
-                    ReboaBpMean = GetValue(lookup, $"s_bp_m_{suffix}"),
-                    ReboaBpDiast = GetValue(lookup, $"s_bp_diast_{suffix}"),
+                    ReboaBpSyst = GetValue(lookup, $"r_bp_syst_{suffix}"),
+                    ReboaBpMean = GetValue(lookup, $"r_bp_m_{suffix}"),
+                    ReboaBpDiast = GetValue(lookup, $"r_bp_diast_{suffix}"),
 
                     NirsLeft = GetValue(lookup, $"nirs_l_{suffix}"),
                     NirsRight = GetValue(lookup, $"nirs_r_{suffix}"),
@@ -330,13 +325,13 @@ namespace CPReboaReporting
                     Timepoint = label,
                     Timestamp = Repeat3TimepointMapping.GetTimestamp(lookup, suffix),
 
-                    SchleuseBpSyst = GetValue(lookup, $"r_bp_syst_{suffix}"),
-                    SchleuseBpMean = GetValue(lookup, $"r_bp_m_{suffix}"),
-                    SchleuseBpDiast = GetValue(lookup, $"r_bp_diast_{suffix}"),
+                    SchleuseBpSyst = GetValue(lookup, $"s_bp_syst_{suffix}"),
+                    SchleuseBpMean = GetValue(lookup, $"s_bp_m_{suffix}"),
+                    SchleuseBpDiast = GetValue(lookup, $"s_bp_diast_{suffix}"),
 
-                    ReboaBpSyst = GetValue(lookup, $"s_bp_syst_{suffix}"),
-                    ReboaBpMean = GetValue(lookup, $"s_bp_m_{suffix}"),
-                    ReboaBpDiast = GetValue(lookup, $"s_bp_diast_{suffix}"),
+                    ReboaBpSyst = GetValue(lookup, $"r_bp_syst_{suffix}"),
+                    ReboaBpMean = GetValue(lookup, $"r_bp_m_{suffix}"),
+                    ReboaBpDiast = GetValue(lookup, $"r_bp_diast_{suffix}"),
 
                     NirsLeft = GetValue(lookup, $"nirs_l_{suffix}"),
                     NirsRight = GetValue(lookup, $"nirs_r_{suffix}"),
@@ -558,23 +553,11 @@ namespace CPReboaReporting
             _exportedByUser = exportedByUser;
         }
 
-       
+
 
         private static string? FormatDateTime(string? value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                return null;
-
-            if (DateTime.TryParse(
-                value,
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal,
-                out var dt))
-            {
-                return dt.ToLocalTime().ToString("dd-MM-yyyy HH:mm:ss");
-            }
-
-            return value; // fallback if parsing fails
+            return DateTimeHelper.FormatRedcapDateTime(value);
         }
 
         private static bool IsSelected(string? selectedValue, string optionValue)
@@ -990,15 +973,10 @@ namespace CPReboaReporting
                            {
                                column.Spacing(0);
 
-                               column.Item().AlignRight().Text("Klinikdirektor a. i.").FontSize(5);
-                               column.Item().AlignRight().Text("Dr. med. Beat Lehmann").SemiBold().FontSize(6);
+                               column.Item().AlignRight().Text(StudyInfo.ClinicDirectorTitle).FontSize(5);
+                               column.Item().AlignRight().Text(StudyInfo.ClinicDirectorName).SemiBold().FontSize(6);
 
-                               /*
-                               column.Item().PaddingTop(1).Text("");
-
-                               column.Item().AlignRight().Text("Leitender Arzt Forschung").FontSize(5);
-                               column.Item().AlignRight().Text("Prof. Dr. med. Wolf Hautz, MME").SemiBold().FontSize(6);
-                               */
+                               
                            });
                     });
 
@@ -1049,12 +1027,14 @@ namespace CPReboaReporting
                                 });
                             }
 
-                            AddDetail("Study Name", "in-hospital cardiopulmonary resuscitation with balloon occlusion of the descending aorta");
-                            AddDetail("Acronym", "CPReboa");
-                            AddDetail("BASEC-Nr.", "2025-D0108");
-                            AddDetail("DLF-Nr", "6281");
-                            AddDetail("Clinic", "Universitätsklinik für Notfallmedizin, Inselspital Bern");
-                            AddDetail("Sponsor Investigator", "PD Dr. med. et MME Tanja Birrenbach");
+                           
+
+                            AddDetail("Study Name", StudyInfo.StudyName);
+                            AddDetail("Acronym", StudyInfo.Acronym);
+                            AddDetail("BASEC-Nr.", StudyInfo.BasecNumber);
+                            AddDetail("DLF-Nr", StudyInfo.DlfNumber);
+                            AddDetail("Clinic", StudyInfo.Clinic);
+                            AddDetail("Sponsor Investigator", StudyInfo.SponsorInvestigator);
                         });
                     });
 

@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{DA239BC0-98DD-A757-0B1A-836B6C95C98C}|CPReboaReporting\\CPReboaReporting.csproj|solutionrelative:cpreboareporting\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{DA239BC0-98DD-A757-0B1A-836B6C95C98C}|CPReboaReporting\\CPReboaReporting.csproj|c:\\dev\\cpreboa_server\\source\\cpreboareporting\\cpreboareporting\\studyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA239BC0-98DD-A757-0B1A-836B6C95C98C}|CPReboaReporting\\CPReboaReporting.csproj|solutionrelative:cpreboareporting\\studyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2C608395-F560-F540-56C6-53AB57C078F3}|Test\\Main.csproj|c:\\dev\\cpreboa_server\\source\\cpreboareporting\\test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C608395-F560-F540-56C6-53AB57C078F3}|Test\\Main.csproj|solutionrelative:test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudyInfo.cs",
+              "DocumentMoniker": "C:\\dev\\CPReboa_Server\\source\\CPReboaReporting\\CPReboaReporting\\StudyInfo.cs",
+              "RelativeDocumentMoniker": "CPReboaReporting\\StudyInfo.cs",
+              "ToolTip": "C:\\dev\\CPReboa_Server\\source\\CPReboaReporting\\CPReboaReporting\\StudyInfo.cs",
+              "RelativeToolTip": "CPReboaReporting\\StudyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T15:46:57.353Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,20 +45,20 @@
               "RelativeDocumentMoniker": "CPReboaReporting\\Class1.cs",
               "ToolTip": "C:\\dev\\CPReboa_Server\\source\\CPReboaReporting\\CPReboaReporting\\Class1.cs",
               "RelativeToolTip": "CPReboaReporting\\Class1.cs",
-              "ViewState": "AgIAABMEAAAAAAAAAAAgwCQEAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAL0DAAAAAAAAAADwv9UDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-15T16:43:48.037Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\dev\\CPReboa_Server\\source\\CPReboaReporting\\Test\\Program.cs",
               "RelativeDocumentMoniker": "Test\\Program.cs",
               "ToolTip": "C:\\dev\\CPReboa_Server\\source\\CPReboaReporting\\Test\\Program.cs",
               "RelativeToolTip": "Test\\Program.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAYwDEAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAuwIUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-15T17:18:55.172Z"
             }

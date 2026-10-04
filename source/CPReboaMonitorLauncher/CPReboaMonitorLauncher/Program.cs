@@ -1155,6 +1155,30 @@ Dictionary<string, string> BuildCaseLookup(string caseDir)
     // Map event names from events.csv to template variable names
     var eventToTemplateMap = new Dictionary<string, string>(StringComparer.Ordinal)
     {
+        // Main timepoints
+        ["T10"] = "dt_10",
+        ["T0"] = "dt_t0",
+        ["T1"] = "dt_t1",
+        ["T2"] = "dt_t2",
+        ["T3"] = "dt_t3",
+        ["T4"] = "dt_t4",
+        ["T5"] = "dt_t5",
+
+        // Second REBOA sequence
+        ["T1_2"] = "dt_t1_2",
+        ["T2_2"] = "dt_t2_2",
+        ["T3_2"] = "dt_t3_2",
+        ["T4_2"] = "dt_t4_2",
+        ["T5_2"] = "dt_t5_2",
+
+        // Third REBOA sequence
+        ["T1_3"] = "dt_t1_3",
+        ["T2_3"] = "dt_t2_3",
+        ["T3_3"] = "dt_t3_3",
+        ["T4_3"] = "dt_t4_3",
+        ["T5_3"] = "dt_t5_3",
+
+        // Blood samples
         ["dt_be_1"] = "dt_bs_t0",
         ["dt_be_2"] = "dt_bs_t4",
         ["dt_be_3"] = "dt_bs_t5"
@@ -1213,7 +1237,8 @@ async Task<string> FillTemplateCsvAsync(string templateCsvPath, string caseDir)
 
         var variableName = parts[0];
 
-        if (!string.IsNullOrWhiteSpace(variableName) && lookup.TryGetValue(variableName, out var matchedValue))
+        if (!string.IsNullOrWhiteSpace(variableName) &&
+        lookup.TryGetValue(variableName, out var matchedValue))
         {
             if (TryParseUtcTimestamp(matchedValue, out var utc))
             {
@@ -1475,7 +1500,23 @@ void AddIntelliVueTemplateValues(Dictionary<string, string> lookup, string caseD
         lookup[$"s_bp_m_{suffix}"] = GetValue(aortMeanIndex);
 
         // NOM_AWAY_CO2_ET -> etco2_*
-        lookup[$"etco2_{suffix}"] = GetValue(etco2Index);
+        var nearestEtco2 = rows
+            .Where(r =>
+                etco2Index >= 0 &&
+                etco2Index < r.Values.Count &&
+                !string.IsNullOrWhiteSpace(r.Values[etco2Index]) &&
+                r.Values[etco2Index].Trim() != "-")
+            .Select(r => new
+            {
+                Row = r,
+                Delta = (r.TimestampUtc - targetUtc).Duration()
+            })
+            .Where(x => x.Delta <= TimeSpan.FromSeconds(5))
+            .OrderBy(x => x.Delta)
+            .FirstOrDefault();
+
+        lookup[$"etco2_{suffix}"] =
+            nearestEtco2?.Row.Values[etco2Index]?.Trim() ?? string.Empty;
 
         // optional debug field
         lookup[$"pc_timestamp_{suffix}"] =
