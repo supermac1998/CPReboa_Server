@@ -10,7 +10,7 @@ Central server application coordinating the data-acquisition workflow. It commun
 ### VSCaptureMP
 Adapted acquisition software for the **Philips IntelliVue MP30** patient monitor. It acquires and stores physiologic data, including arterial pressure and end-tidal CO₂ measurements.
 
-This project incorporates and adapts code from VSCaptureMP, a C#/.NET application for acquiring data from Philips IntelliVue patient monitors.
+This project incorporates and adapts code from [VSCaptureMP](https://github.com/BySlin/VSCaptureMP), a C#/.NET application for acquiring data from Philips IntelliVue patient monitors.
 
 License Notice
 
