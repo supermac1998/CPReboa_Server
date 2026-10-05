@@ -48,6 +48,3 @@ This software was developed for research purposes within the CPReboa study. It i
 Alexander Macpherson  
 Universität Bern
 
-## License
-
-[License information]
