@@ -10,6 +10,12 @@ Central server application coordinating the data-acquisition workflow. It commun
 ### VSCaptureMP
 Adapted acquisition software for the **Philips IntelliVue MP30** patient monitor. It acquires and stores physiologic data, including arterial pressure and end-tidal CO₂ measurements.
 
+This project incorporates and adapts code from VSCaptureMP, a C#/.NET application for acquiring data from Philips IntelliVue patient monitors.
+
+License Notice
+
+The original VSCaptureMP repository does not specify a software license. No open-source license for the original code is therefore claimed here, and all rights to the original code remain with its respective author(s) and rights holders.
+
 ### Masimo_Root
 Acquisition software for the **Masimo Root with O3 regional oximetry**, used to record bilateral cerebral regional oxygen saturation (rSO₂) data.
 
